@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Milestone {
@@ -47,5 +48,18 @@ public class Milestone {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Milestone milestone = (Milestone) o;
+        return id == milestone.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
