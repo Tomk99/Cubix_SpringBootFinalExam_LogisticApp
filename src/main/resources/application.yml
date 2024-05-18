@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: LogisticApp
+  datasource:
+    url: jdbc:postgresql://localhost:5432/logistic
+    username: postgres
+    password: nemmondommeg
+  jpa:
+    hibernate:
+      ddl-auto: update
