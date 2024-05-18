@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Section {
     @Id
     @GeneratedValue
-    private long id;
+    private long sectionId;
     private int orderInPlan;
     @ManyToOne
     private Milestone startPoint;
@@ -21,7 +21,7 @@ public class Section {
     private TransportPlan transportPlan;
 
     public Section(long id, int orderInPlan, Milestone startPoint, Milestone endPoint, TransportPlan transportPlan) {
-        this.id = id;
+        this.sectionId = id;
         this.orderInPlan = orderInPlan;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -32,12 +32,12 @@ public class Section {
 
     }
 
-    public long getId() {
-        return id;
+    public long getSectionId() {
+        return sectionId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setSectionId(long sectionId) {
+        this.sectionId = sectionId;
     }
 
     public int getOrderInPlan() {
@@ -77,11 +77,11 @@ public class Section {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Section section = (Section) o;
-        return id == section.id;
+        return sectionId == section.sectionId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(sectionId);
     }
 }

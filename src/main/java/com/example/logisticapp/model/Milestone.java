@@ -12,13 +12,13 @@ import java.util.Objects;
 public class Milestone {
     @Id
     @GeneratedValue
-    private long id;
+    private long milestoneId;
     private LocalDateTime plannedTime;
     @ManyToOne
     private Address address;
 
     public Milestone(long id, LocalDateTime plannedTime, Address address) {
-        this.id = id;
+        this.milestoneId = id;
         this.plannedTime = plannedTime;
         this.address = address;
     }
@@ -26,12 +26,12 @@ public class Milestone {
 
     }
 
-    public long getId() {
-        return id;
+    public long getMilestoneId() {
+        return milestoneId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setMilestoneId(long milestoneId) {
+        this.milestoneId = milestoneId;
     }
 
     public LocalDateTime getPlannedTime() {
@@ -55,11 +55,11 @@ public class Milestone {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Milestone milestone = (Milestone) o;
-        return id == milestone.id;
+        return milestoneId == milestone.milestoneId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(milestoneId);
     }
 }

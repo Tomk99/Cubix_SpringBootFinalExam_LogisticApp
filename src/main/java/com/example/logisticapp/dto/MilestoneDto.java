@@ -6,22 +6,22 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class MilestoneDto {
-    private long milestoneId;
+    private long id;
     private LocalDateTime plannedTime;
     private Address address;
 
-    public MilestoneDto(long milestoneId, LocalDateTime plannedTime, Address address) {
-        this.milestoneId = milestoneId;
+    public MilestoneDto(long id, LocalDateTime plannedTime, Address address) {
+        this.id = id;
         this.plannedTime = plannedTime;
         this.address = address;
     }
 
-    public long getMilestoneId() {
-        return milestoneId;
+    public long getId() {
+        return id;
     }
 
-    public void setMilestoneId(long milestoneId) {
-        this.milestoneId = milestoneId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public LocalDateTime getPlannedTime() {
@@ -45,11 +45,11 @@ public class MilestoneDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MilestoneDto that = (MilestoneDto) o;
-        return milestoneId == that.milestoneId;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(milestoneId);
+        return Objects.hash(id);
     }
 }

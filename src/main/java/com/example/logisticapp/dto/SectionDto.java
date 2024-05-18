@@ -6,26 +6,26 @@ import com.example.logisticapp.model.TransportPlan;
 import java.util.Objects;
 
 public class SectionDto {
-    private long sectionId;
+    private long id;
     private int orderInPlan;
     private Milestone startPoint;
     private Milestone endPoint;
     private TransportPlan transportPlan;
 
-    public SectionDto(long sectionId, int orderInPlan, Milestone startPoint, Milestone endPoint, TransportPlan transportPlan) {
-        this.sectionId = sectionId;
+    public SectionDto(long id, int orderInPlan, Milestone startPoint, Milestone endPoint, TransportPlan transportPlan) {
+        this.id = id;
         this.orderInPlan = orderInPlan;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.transportPlan = transportPlan;
     }
 
-    public long getSectionId() {
-        return sectionId;
+    public long getId() {
+        return id;
     }
 
-    public void setSectionId(long sectionId) {
-        this.sectionId = sectionId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getOrderInPlan() {
@@ -65,11 +65,11 @@ public class SectionDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SectionDto that = (SectionDto) o;
-        return sectionId == that.sectionId;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sectionId);
+        return Objects.hash(id);
     }
 }

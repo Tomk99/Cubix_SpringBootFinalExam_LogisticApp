@@ -12,13 +12,13 @@ import java.util.Objects;
 public class TransportPlan {
     @Id
     @GeneratedValue
-    private long id;
+    private long transportPlanId;
     private int income;
     @OneToMany
     private List<Section> sections;
 
     public TransportPlan(long id, int income, List<Section> sections) {
-        this.id = id;
+        this.transportPlanId = id;
         this.income = income;
         this.sections = sections;
     }
@@ -27,12 +27,12 @@ public class TransportPlan {
 
     }
 
-    public long getId() {
-        return id;
+    public long getTransportPlanId() {
+        return transportPlanId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setTransportPlanId(long transportPlanId) {
+        this.transportPlanId = transportPlanId;
     }
 
     public int getIncome() {
@@ -56,11 +56,11 @@ public class TransportPlan {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TransportPlan that = (TransportPlan) o;
-        return id == that.id && income == that.income && Objects.equals(sections, that.sections);
+        return transportPlanId == that.transportPlanId && income == that.income && Objects.equals(sections, that.sections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, income, sections);
+        return Objects.hash(transportPlanId, income, sections);
     }
 }

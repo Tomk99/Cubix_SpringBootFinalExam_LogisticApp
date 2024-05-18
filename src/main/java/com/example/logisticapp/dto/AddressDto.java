@@ -1,19 +1,27 @@
 package com.example.logisticapp.dto;
 
+import jakarta.validation.constraints.*;
+
 import java.util.Objects;
 
 public class AddressDto {
-    private long addressId;
+
+    private long id;
+    @NotNull
     private int countryCode;
+    @NotEmpty
     private String zipCode;
+    @NotEmpty
     private String city;
+    @NotEmpty
     private String street;
+    @NotEmpty
     private String houseNumber;
     private int longitude;
     private int latitude;
 
-    public AddressDto(long addressId, int countryCode, String zipCode, String city, String street, String houseNumber, int longitude, int latitude) {
-        this.addressId = addressId;
+    public AddressDto(long id, int countryCode, String zipCode, String city, String street, String houseNumber, int longitude, int latitude) {
+        this.id = id;
         this.countryCode = countryCode;
         this.zipCode = zipCode;
         this.city = city;
@@ -22,13 +30,12 @@ public class AddressDto {
         this.longitude = longitude;
         this.latitude = latitude;
     }
-
-    public long getAddressId() {
-        return addressId;
+    public long getId() {
+        return id;
     }
 
-    public void setAddressId(long addressId) {
-        this.addressId = addressId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getCountryCode() {
@@ -92,11 +99,11 @@ public class AddressDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddressDto that = (AddressDto) o;
-        return addressId == that.addressId;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressId);
+        return Objects.hash(id);
     }
 }

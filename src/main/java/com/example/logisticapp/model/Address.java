@@ -11,7 +11,7 @@ public class Address {
 
     @Id
     @GeneratedValue
-    private long id;
+    private long addressId;
     private int countryCode;
     private String zipCode;
     private String city;
@@ -20,7 +20,7 @@ public class Address {
     private int longitude;
     private int latitude;
 
-    public Address(long id,
+    public Address(long addressId,
                    int countryCode,
                    String zipCode,
                    String city,
@@ -28,7 +28,7 @@ public class Address {
                    String houseNumber,
                    int longitude,
                    int latitude) {
-        this.id = id;
+        this.addressId = addressId;
         this.countryCode = countryCode;
         this.zipCode = zipCode;
         this.city = city;
@@ -42,12 +42,12 @@ public class Address {
 
     }
 
-    public long getId() {
-        return id;
+    public long getAddressId() {
+        return addressId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAddressId(long addressId) {
+        this.addressId = addressId;
     }
 
     public int getCountryCode() {
@@ -111,11 +111,11 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return id == address.id;
+        return addressId == address.addressId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(addressId);
     }
 }
