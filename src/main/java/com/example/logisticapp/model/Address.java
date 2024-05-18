@@ -13,19 +13,19 @@ public class Address {
     @GeneratedValue
     private long addressId;
     private int countryCode;
-    private String zipCode;
+    private int zipCode;
     private String city;
     private String street;
-    private String houseNumber;
+    private int houseNumber;
     private int longitude;
     private int latitude;
 
     public Address(long addressId,
                    int countryCode,
-                   String zipCode,
+                   int zipCode,
                    String city,
                    String street,
-                   String houseNumber,
+                   int houseNumber,
                    int longitude,
                    int latitude) {
         this.addressId = addressId;
@@ -58,11 +58,11 @@ public class Address {
         this.countryCode = countryCode;
     }
 
-    public String getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -82,11 +82,11 @@ public class Address {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public int getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(String houseNumber) {
+    public void setHouseNumber(int houseNumber) {
         this.houseNumber = houseNumber;
     }
 

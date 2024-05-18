@@ -9,18 +9,18 @@ public class AddressDto {
     private long id;
     @NotNull
     private int countryCode;
-    @NotEmpty
-    private String zipCode;
+    @NotNull
+    private int zipCode;
     @NotEmpty
     private String city;
     @NotEmpty
     private String street;
-    @NotEmpty
-    private String houseNumber;
+    @NotNull
+    private int houseNumber;
     private int longitude;
     private int latitude;
 
-    public AddressDto(long id, int countryCode, String zipCode, String city, String street, String houseNumber, int longitude, int latitude) {
+    public AddressDto(long id, int countryCode, int zipCode, String city, String street, int houseNumber, int longitude, int latitude) {
         this.id = id;
         this.countryCode = countryCode;
         this.zipCode = zipCode;
@@ -30,6 +30,11 @@ public class AddressDto {
         this.longitude = longitude;
         this.latitude = latitude;
     }
+
+    public AddressDto() {
+
+    }
+
     public long getId() {
         return id;
     }
@@ -46,11 +51,11 @@ public class AddressDto {
         this.countryCode = countryCode;
     }
 
-    public String getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -70,11 +75,11 @@ public class AddressDto {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public int getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(String houseNumber) {
+    public void setHouseNumber(int houseNumber) {
         this.houseNumber = houseNumber;
     }
 
