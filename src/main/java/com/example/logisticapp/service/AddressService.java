@@ -3,6 +3,8 @@ package com.example.logisticapp.service;
 import com.example.logisticapp.model.Address;
 import com.example.logisticapp.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +43,16 @@ public class AddressService {
         addressRepository.deleteById(id);
     }
 
-    public List<Address> findBySpecs(Address address) {
+    public Page<Address> findBySpecs(Address address, Pageable pageable) {
 
         String city = address.getCity();
         String street = address.getStreet();
+        int countryCode = address.getCountryCode();
+        int zipCode = address.getZipCode();
+
+        if (city.isBlank() && street.isBlank() && countryCode == 0 && zipCode == 0) {
+            throw new NoSuchElementException();
+        }
 
         Specification<Address> specs = Specification.where(null);
         if (!city.isEmpty()) {
@@ -53,6 +61,13 @@ public class AddressService {
         if (!street.isEmpty()) {
             specs = specs.and(streetNameStartsWith(street));
         }
-        return addressRepository.findAll(specs);
+        if (countryCode > 0) {
+            specs = specs.and(countryCodeEquals(countryCode));
+        }
+        if (zipCode > 0) {
+            specs = specs.and(zipCodeEquals(zipCode));
+        }
+
+        return addressRepository.findAll(specs, pageable);
     }
 }

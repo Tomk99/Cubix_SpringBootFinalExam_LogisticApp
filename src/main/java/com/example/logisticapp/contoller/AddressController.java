@@ -6,6 +6,8 @@ import com.example.logisticapp.model.Address;
 import com.example.logisticapp.service.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -68,7 +70,14 @@ public class AddressController {
     }
 
     @PostMapping("/search")
-    private List<AddressDto> searchBySpecs(@RequestBody @Valid AddressDto addressDto) {
-        return addressMapper.addressesToDtos(addressService.findBySpecs(addressMapper.dtoToAddress(addressDto)));
+    private List<AddressDto> searchBySpecs(@RequestBody AddressDto addressDto, @SortDefault("addressId") Pageable pageable) {
+        List<AddressDto> addressDtos;
+        try {
+            List<Address> content = addressService.findBySpecs(addressMapper.dtoToAddress(addressDto), pageable).getContent();
+            addressDtos = addressMapper.addressesToDtos(content);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return addressDtos;
     }
 }
