@@ -6,9 +6,11 @@ import com.example.logisticapp.model.Address;
 import com.example.logisticapp.service.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -70,14 +72,17 @@ public class AddressController {
     }
 
     @PostMapping("/search")
-    private List<AddressDto> searchBySpecs(@RequestBody AddressDto addressDto, @SortDefault("addressId") Pageable pageable) {
+    private ResponseEntity<List<AddressDto>> searchBySpecs(@RequestBody AddressDto addressDto, @SortDefault("addressId") Pageable pageable) {
         List<AddressDto> addressDtos;
+        long totalElements;
         try {
-            List<Address> content = addressService.findBySpecs(addressMapper.dtoToAddress(addressDto), pageable).getContent();
+            Page<Address> page = addressService.findBySpecs(addressMapper.dtoToAddress(addressDto), pageable);
+            List<Address> content = page.getContent();
+            totalElements = page.getTotalElements();
             addressDtos = addressMapper.addressesToDtos(content);
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        return addressDtos;
+        return ResponseEntity.ok().header("X-Total-Count", String.valueOf(totalElements)).body(addressDtos);
     }
 }
