@@ -16,4 +16,7 @@ public class SectionService {
     public List<Section> findAll() {
         return sectionRepository.findAll();
     }
+    public Section create(Section section) {
+        return sectionRepository.save(section);
+    }
 }

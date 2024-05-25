@@ -17,15 +17,12 @@ public class Section {
     private Milestone startPoint;
     @ManyToOne
     private Milestone endPoint;
-    @ManyToOne
-    private TransportPlan transportPlan;
 
-    public Section(long id, int orderInPlan, Milestone startPoint, Milestone endPoint, TransportPlan transportPlan) {
+    public Section(long id, int orderInPlan, Milestone startPoint, Milestone endPoint) {
         this.sectionId = id;
         this.orderInPlan = orderInPlan;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
-        this.transportPlan = transportPlan;
     }
 
     public Section() {
@@ -62,14 +59,6 @@ public class Section {
 
     public void setEndPoint(Milestone endPoint) {
         this.endPoint = endPoint;
-    }
-
-    public TransportPlan getTransportPlan() {
-        return transportPlan;
-    }
-
-    public void setTransportPlan(TransportPlan transportPlan) {
-        this.transportPlan = transportPlan;
     }
 
     @Override

@@ -12,7 +12,6 @@ import java.util.List;
 public interface MilestoneMapper {
 
     @Mapping(target = "id", source = "milestoneId")
-    @Mapping(target = "addressId", source = "address.addressId")
     MilestoneDto milestoneToDto(Milestone milestone);
     @InheritInverseConfiguration
     Milestone dtoToMilestone(MilestoneDto milestoneDto);

@@ -1,5 +1,6 @@
 package com.example.logisticapp.service;
 
+import com.example.logisticapp.model.Address;
 import com.example.logisticapp.model.Milestone;
 import com.example.logisticapp.repository.AddressRepository;
 import com.example.logisticapp.repository.MilestoneRepository;
@@ -24,7 +25,13 @@ public class MilestoneService {
 
     @Transactional
     public Milestone create(Milestone milestone) {
-        milestone.setAddress(addressRepository.findById(milestone.getAddress().getAddressId()).orElseThrow(NoSuchElementException::new));
         return milestoneRepository.save(milestone);
+    }
+
+    @Transactional
+    public Milestone setAddress(long id, long addressId) {
+        Milestone milestone = milestoneRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        milestone.setAddress(addressRepository.findById(addressId).orElseThrow(NoSuchElementException::new));
+        return milestoneRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 }
