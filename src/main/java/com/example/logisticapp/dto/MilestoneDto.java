@@ -1,19 +1,17 @@
 package com.example.logisticapp.dto;
 
-import com.example.logisticapp.model.Address;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class MilestoneDto {
     private long id;
     private LocalDateTime plannedTime;
-    private Address address;
+    private long addressId;
 
-    public MilestoneDto(long id, LocalDateTime plannedTime, Address address) {
+    public MilestoneDto(long id, LocalDateTime plannedTime, long addressId) {
         this.id = id;
         this.plannedTime = plannedTime;
-        this.address = address;
+        this.addressId = addressId;
     }
 
     public long getId() {
@@ -32,12 +30,12 @@ public class MilestoneDto {
         this.plannedTime = plannedTime;
     }
 
-    public Address getAddress() {
-        return address;
+    public long getAddressId() {
+        return addressId;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressId(long addressId) {
+        this.addressId = addressId;
     }
 
     @Override
