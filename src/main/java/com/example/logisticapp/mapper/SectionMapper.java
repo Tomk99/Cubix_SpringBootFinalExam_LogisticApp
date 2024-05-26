@@ -10,10 +10,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface SectionMapper {
-    @Mapping(target = "id",source = "sectionId")
+    @Mapping(target = "id", source = "sectionId")
     SectionDto sectionToDto(Section section);
     @InheritInverseConfiguration
     Section dtoToSection(SectionDto sectionDto);
     List<SectionDto> sectionsToDtos(List<Section> sections);
-    List<Section> dtosToSections(List<SectionDto> sectionDtos);
 }

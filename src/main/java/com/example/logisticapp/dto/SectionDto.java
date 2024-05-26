@@ -1,7 +1,6 @@
 package com.example.logisticapp.dto;
 
 import com.example.logisticapp.model.Milestone;
-import com.example.logisticapp.model.TransportPlan;
 
 import java.util.Objects;
 
@@ -10,14 +9,12 @@ public class SectionDto {
     private int orderInPlan;
     private Milestone startPoint;
     private Milestone endPoint;
-    private TransportPlan transportPlan;
 
-    public SectionDto(long id, int orderInPlan, Milestone startPoint, Milestone endPoint, TransportPlan transportPlan) {
+    public SectionDto(long id, int orderInPlan, Milestone startPoint, Milestone endPoint) {
         this.id = id;
         this.orderInPlan = orderInPlan;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
-        this.transportPlan = transportPlan;
     }
 
     public long getId() {
@@ -50,14 +47,6 @@ public class SectionDto {
 
     public void setEndPoint(Milestone endPoint) {
         this.endPoint = endPoint;
-    }
-
-    public TransportPlan getTransportPlan() {
-        return transportPlan;
-    }
-
-    public void setTransportPlan(TransportPlan transportPlan) {
-        this.transportPlan = transportPlan;
     }
 
     @Override

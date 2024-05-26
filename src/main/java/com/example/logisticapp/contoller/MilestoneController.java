@@ -1,6 +1,5 @@
 package com.example.logisticapp.contoller;
 
-import com.example.logisticapp.dto.AddressDto;
 import com.example.logisticapp.dto.MilestoneDto;
 import com.example.logisticapp.mapper.AddressMapper;
 import com.example.logisticapp.mapper.MilestoneMapper;
@@ -22,17 +21,17 @@ public class MilestoneController {
     AddressMapper addressMapper;
 
     @GetMapping
-    public List<MilestoneDto> findAll() {
+    private List<MilestoneDto> findAll() {
         return milestoneMapper.milestonesToDtos(milestoneService.findAll());
     }
 
     @PostMapping
-    public MilestoneDto createNewMilestone(@RequestBody MilestoneDto milestoneDto) {
+    private MilestoneDto createNewMilestone(@RequestBody MilestoneDto milestoneDto) {
         return milestoneMapper.milestoneToDto(milestoneService.create(milestoneMapper.dtoToMilestone(milestoneDto)));
     }
 
     @PutMapping("/{id}/address/{addressId}")
-    public MilestoneDto setAddress(@PathVariable long id, @PathVariable long addressId) {
+    private MilestoneDto setAddress(@PathVariable long id, @PathVariable long addressId) {
         return milestoneMapper.milestoneToDto(milestoneService.setAddress(id, addressId));
     }
 }

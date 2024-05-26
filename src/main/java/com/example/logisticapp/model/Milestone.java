@@ -1,6 +1,5 @@
 package com.example.logisticapp.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,11 +17,12 @@ public class Milestone {
     @ManyToOne
     private Address address;
 
-    public Milestone(long id, LocalDateTime plannedTime, Address address) {
-        this.milestoneId = id;
+    public Milestone(long milestoneId, LocalDateTime plannedTime, Address address) {
+        this.milestoneId = milestoneId;
         this.plannedTime = plannedTime;
         this.address = address;
     }
+
     public Milestone() {
 
     }

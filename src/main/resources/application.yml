@@ -8,3 +8,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+logistic:
+  delay:
+    min30: 1
+    min60: 2
+    min120: 5

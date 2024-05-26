@@ -17,11 +17,19 @@ public class SectionController {
     SectionMapper sectionMapper;
 
     @GetMapping
-    public List<SectionDto> findAll() {
+    private List<SectionDto> findAll() {
         return sectionMapper.sectionsToDtos(sectionService.findAll());
     }
     @PostMapping
-    public SectionDto createNewSection(@RequestBody SectionDto sectionDto) {
+    private SectionDto createNewSection(@RequestBody SectionDto sectionDto) {
         return sectionMapper.sectionToDto(sectionService.create(sectionMapper.dtoToSection(sectionDto)));
+    }
+    @PutMapping("/{id}/startPoint/{startPointId}")
+    private SectionDto setStartPoint(@PathVariable long id, @PathVariable long startPointId) {
+        return sectionMapper.sectionToDto(sectionService.setStartPoint(id,startPointId));
+    }
+    @PutMapping("/{id}/endPoint/{endPointId}")
+    private SectionDto setEndPoint(@PathVariable long id, @PathVariable long endPointId) {
+        return sectionMapper.sectionToDto(sectionService.setEndPoint(id,endPointId));
     }
 }
