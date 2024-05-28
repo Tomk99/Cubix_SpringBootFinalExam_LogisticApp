@@ -46,4 +46,14 @@ public class TransportPlanController {
     private TransportPlanDto addSection(@PathVariable long id, @PathVariable long sectionId) {
         return transportPlanMapper.planToDto(transportPlanService.addSection(id,sectionId));
     }
+
+    @DeleteMapping
+    private void deleteAll() {
+        transportPlanService.deleteAll();
+    }
+
+    @DeleteMapping("/{id}")
+    private void deleteById(@PathVariable long id) {
+        transportPlanService.deleteById(id);
+    }
 }

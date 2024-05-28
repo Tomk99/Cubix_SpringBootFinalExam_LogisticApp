@@ -7,7 +7,7 @@ spring:
     password: nemmondommeg
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
 logistic:
   delay:

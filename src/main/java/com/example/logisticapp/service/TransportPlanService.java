@@ -77,4 +77,12 @@ public class TransportPlanService {
         transportPlan.getSections().add(section);
         return transportPlanRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
+
+    public void deleteAll() {
+        transportPlanRepository.deleteAll();
+    }
+
+    public void deleteById(long id) {
+        transportPlanRepository.deleteById(id);
+    }
 }
