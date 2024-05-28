@@ -5,6 +5,8 @@ import com.example.logisticapp.dto.MilestoneDelayDto;
 import com.example.logisticapp.model.Milestone;
 import com.example.logisticapp.model.Section;
 import com.example.logisticapp.model.TransportPlan;
+import com.example.logisticapp.repository.AddressRepository;
+import com.example.logisticapp.repository.MilestoneRepository;
 import com.example.logisticapp.repository.SectionRepository;
 import com.example.logisticapp.repository.TransportPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,11 @@ public class TransportPlanService {
     @Autowired
     TransportPlanRepository transportPlanRepository;
     @Autowired
+    MilestoneRepository milestoneRepository;
+    @Autowired
     SectionRepository sectionRepository;
+    @Autowired
+    AddressRepository addressRepository;
     @Autowired
     LogisticConfig config;
 
@@ -29,6 +35,11 @@ public class TransportPlanService {
     }
     @Transactional
     public TransportPlan create(TransportPlan transportPlan) {
+        addressRepository.saveAll(transportPlan.getSections().stream().map(Section::getStartPoint).map(Milestone::getAddress).toList());
+        addressRepository.saveAll(transportPlan.getSections().stream().map(Section::getEndPoint).map(Milestone::getAddress).toList());
+        milestoneRepository.saveAll(transportPlan.getSections().stream().map(Section::getStartPoint).toList());
+        milestoneRepository.saveAll(transportPlan.getSections().stream().map(Section::getEndPoint).toList());
+        sectionRepository.saveAll(transportPlan.getSections());
         return transportPlanRepository.save(transportPlan);
     }
     @Transactional

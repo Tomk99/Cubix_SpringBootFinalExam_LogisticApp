@@ -20,5 +20,6 @@ public class LogisticAppApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         //initDbService.initDb();
+        //initDbService.initUsers();
     }
 }

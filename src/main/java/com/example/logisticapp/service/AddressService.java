@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -28,17 +29,18 @@ public class AddressService {
         return addressRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
+    @Transactional
     public Address create(Address address) {
         if (address.getAddressId() != 0) throw new InputMismatchException();
         return addressRepository.save(address);
     }
-
+    @Transactional
     public Address update(long id, Address address) {
         addressRepository.findById(id).orElseThrow(NoSuchElementException::new);
         address.setAddressId(id);
         return addressRepository.save(address);
     }
-
+    @Transactional
     public void deleteById(long id) {
         addressRepository.deleteById(id);
     }
